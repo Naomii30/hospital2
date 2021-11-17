@@ -1,0 +1,47 @@
+<body id="medicos">    
+    <nav class="navbar py-0 navbar-expand-lg navbar-light bg-light border-bottom">
+      <div class="container-fluid">
+        <button class="navbar-burger navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-none d-xl-flex navbar-collapse ms-12">
+          <img width="40" src="https://www.clipartkey.com/mpngs/m/273-2737645_patient-clipart-icu-clipart-icu-clip-art.png" />
+          <ul class="navbar-nav me-12 mb-2 mb-lg-0 mx-auto py-10 px-xxl-12">
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/medicos">Medicos</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/especialidades">Especialidades</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/pacientes">Pacientes</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/consultas">Consultas</a></li>
+            <li class="nav-item"><a class="nav-link" aria-current="page" href="/laboratorios">Laboratorios</a></li>
+            </ul>
+          <a class="ms-auto px-10 align-self-stretch border-start link-dark text-decoration-none d-flex align-items-center fw-bold" href="/auth">
+            <span>Log out</span>
+          </a>
+        </div>
+      </div>
+    </nav>
+    <div class="container" >
+        <div class="col-sm-7 float-left">
+                
+        </div>
+      
+        <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+      
+    
+      <div class="card col-sm-4 p-2 float-right" class="custom-form">
+        <p>
+          Información de la especialidad<input type="text" class="custom-form input"type="text"  placeholder="Nombre de la especialidad"> 
+        </p>
+        <p>
+          <input type="number" class="custom-form input"type="text"  placeholder="ID">
+        </p>
+        <div class="row">
+          <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
+          <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
+        </div>
+       
+      </div>
+      
+      </div>
+
+</body>
+<router-outlet></router-outlet>
