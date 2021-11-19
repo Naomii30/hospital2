@@ -11,7 +11,6 @@
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/especialidades">Especialidades</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/pacientes">Pacientes</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/consultas">Consultas</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="/laboratorios">Laboratorios</a></li>
             </ul>
           <a class="ms-auto px-10 align-self-stretch border-start link-dark text-decoration-none d-flex align-items-center fw-bold" href="/auth">
             <span>Log out</span>
@@ -19,44 +18,74 @@
         </div>
       </div>
     </nav>
-    <div class="container" >
-        <div class="col-sm-7 float-left">
-                
-        </div>
-      
-        <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
-      
+<div class="container" >
+  
     
-      <div class="card col-sm-4 p-2 float-right" class="custom-form">
-        <p>
-          Información del paciente<input type="text" class="custom-form input" placeholder="Nombre"> 
-        </p>
-        <p>
-          <input type="text" class="custom-form input"  placeholder="Apellido">
-        </p>
-        <p>
-          <input type="number" class="custom-form input"  placeholder="ID">
-        </p>
-        <p>
-            <input maxlength="13" type="tel" class="custom-form input" placeholder="+502 00000000">
-        </p>
-        <p>
-        <input  type="text" class="custom-form input" placeholder="dirección">
-          </p>
-        <p>
-          <input maxlength="13" type="tel" class="custom-form input" placeholder="DPI">
-        </p>
-        <p>
-           <input type="email" class="custom-form input" placeholder="email@gmail.com">
-        </p>        
-        <div class="row">
-          <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
-          <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
-        </div>
-       
-      </div>
+<div class="card col-sm-4 p-2 float-right" class="custom-form">
+  <form [formGroup]="pacienteForm" (ngSubmit)="guardar()">
+    <div class="form-group">
+      Información del paciente<input type="text" class="custom-form input" formControlName="nombres"placeholder="Nombre"> 
+    </div>
+    <div class="form-group">
+      <input type="text" class="custom-form input" formControlName="apellidos" placeholder="Apellido">
+    </div>
+    <div class="form-group">
+        <input maxlength="13" type="tel" class="custom-form input" formControlName="numero" placeholder="+502 00000000">
+    </div>
+    <div class="form-group"> 
+      <input  type="text" class="custom-form input" formControlName="direccion" placeholder="dirección">
+    </div>
+    <div>
+      <input maxlength="13" type="tel" class="custom-form input" formControlName="dni" placeholder="DPI">
+    </div>
+    <div class="form-group">
+      <input type="email" class="custom-form input" formControlName="email" placeholder="email@gmail.com">
+    </div>        
+    <div class="form-group"class="row">
+      <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
+      <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
+    </div>
+  </form>
+</div>
+<div> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+<div> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+<div class="col-sm-10 offset-md-1 float-center">
+  <table b="0" span="0" *ngIf="hayRegistros(); else sinarticulos" class="table table-borderless table-striped navbar-light bg-light"  style=" border:0px;">
+    <thead class="thead-dark" style="background:#007ac175; color:white;">
+      <tr>
+        <td>IdPaciente</td>
+        <td>Nombres</td>
+        <td>Apellidos</td>
+        <td>Email</td>
+        <td>Numero</td>
+        <td>Correo</td>
+        <td>Dirección</td>
+        <td>DPI</td>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of pacientes">
+        <td>{{paciente.id_paciente}}</td>
+        <td>{{paciente.nombres}}</td>
+        <td>{{paciente.apellidos}}</td>
+        <td>{{paciente.email}}</td>
+        <td>{{paciente.numero}}</td>
+        <td>{{paciente.direccion}}</td>
+        <td>{{paciente.dni}}</td>
+        <td><button class="btn btn-warning btn-sm" (click)="editar(paciente)">
+          Editar
+        </button>
+        <button class="btn btn-danger btn-sm" (click)="eliminar(paciente)">
+          Eliminar
+        </button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+</div>
+  
       
-      </div>
-
-</body>
+<body>
 <router-outlet></router-outlet>

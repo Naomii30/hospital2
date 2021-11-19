@@ -6,7 +6,6 @@ import { MedicosLayoutComponent } from './layouts/medicos-layout/medicos-layout.
 import { EspecialidadesLayoutComponent } from './layouts/especialidades-layout/especialidades-layout.component';
 import { PacientesLayoutComponent } from './layouts/pacientes-layout/pacientes-layout.component';
 import { ConsultasLayoutComponent } from './layouts/consultas-layout/consultas-layout.component';
-import { LaboratoriosLayoutComponent } from './layouts/laboratorios-layout/laboratorios-layout.component';
 
 
 
@@ -104,22 +103,6 @@ const routes: Routes = [
       {
         path: 'consultas',
         loadChildren:()=> import('./consultas/consultas/consultas.module').then(m=>m.ConsultasModule)
-      },
-
-    ]
-  },
-  {
-    path:'',
-    component: LaboratoriosLayoutComponent,
-    children: [
-      {
-        path:'',
-        redirectTo:'/laboratorios',
-        pathMatch:'full'
-      },
-      {
-        path: 'laboratorios',
-        loadChildren:()=> import('./laboratorios/laboratorios/laboratorios.module').then(m=>m.LaboratoriosModule)
       },
 
     ]

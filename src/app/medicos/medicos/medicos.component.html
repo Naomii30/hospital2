@@ -11,7 +11,6 @@
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/especialidades">Especialidades</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/pacientes">Pacientes</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/consultas">Consultas</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="/laboratorios">Laboratorios</a></li>
             </ul>
           <a class="ms-auto px-10 align-self-stretch border-start link-dark text-decoration-none d-flex align-items-center fw-bold" href="/auth">
             <span>Log out</span>
@@ -21,36 +20,55 @@
     </nav>
 
   <div class="container" >
-    <div class="col-sm-7 float-left">
-            
-    </div>
   
-    <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
-  
-
   <div class="card col-sm-4 p-2 float-right" class="custom-form">
-    <p>
-      Información del medico<input type="text" class="custom-form input"type="text"  placeholder="Nombre"> 
-    </p>
-    <p>
-      <input type="text" class="custom-form input"type="text"  placeholder="Apellido">
-    </p>
-    <p>
-      <input type="number" class="custom-form input"type="text"  placeholder="ID">
-    </p>
-    <p>
-      <input maxlength="13" type="number" class="custom-form input"type="text" placeholder="CMP">
-    </p>
-    <p>
-      foto del medico<input type="url" class="custom-form input" placeholder="url de la foto del medico"> 
-    </p>
-    
-    <div class="row">
-      <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
-      <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
-    </div>
-   
+    <form [formGroup]="medicoForm" (ngSubmit)="guardar()">
+      <p>
+        Información del medico<input maxlength="13" type="number" class="custom-form input"type="text" formControlName="cpm" placeholder="CMP">
+      </p>
+      <p>
+        <input type="text" class="custom-form input"type="text" formControlName="nombres" placeholder="Nombre"> 
+      </p>
+      <p>
+        <input type="text" class="custom-form input"type="text" formControlName="apellidos"  placeholder="Apellido">
+      </p>
+      
+      <div class="row">
+        <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
+        <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
+      </div>
+    </form>
   </div>
+  <div> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+<div> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+  <div class="col-sm-4 offset-md-4 float-center">
+    <table b="0" span="0" *ngIf="hayRegistros(); else sinarticulos" class="table table-borderless table-striped navbar-light bg-light"  style=" border:0px;">
+      <thead class="thead-dark" style="background:#007ac175; color:white;">
+        <tr>
+          <th>ID</th>
+          <th>CMP</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th> ⠀ </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medico of medicos">
+          <td>{{medico.idMedico}}</td>
+          <td>{{medico.cmp}}</td>
+          <td>{{medico.nombres}}</td>
+          <td>{{medico.apellidos}}</td>
+          <td>
+            <button class="btn btn-success btn-sm mx-2">Editar</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(medico)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+            
+  </div>
+
+  <ng-template #sinarticulos><p>No hay datos.</p></ng-template>
   
   </div>
 </body>

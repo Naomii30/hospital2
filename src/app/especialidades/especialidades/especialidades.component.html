@@ -11,7 +11,6 @@
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/especialidades">Especialidades</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/pacientes">Pacientes</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/consultas">Consultas</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="/laboratorios">Laboratorios</a></li>
             </ul>
           <a class="ms-auto px-10 align-self-stretch border-start link-dark text-decoration-none d-flex align-items-center fw-bold" href="/auth">
             <span>Log out</span>
@@ -20,28 +19,48 @@
       </div>
     </nav>
     <div class="container" >
-        <div class="col-sm-7 float-left">
-                
-        </div>
-      
-        <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
-      
     
       <div class="card col-sm-4 p-2 float-right" class="custom-form">
-        <p>
-          Información de la especialidad<input type="text" class="custom-form input"type="text"  placeholder="Nombre de la especialidad"> 
-        </p>
-        <p>
-          <input type="number" class="custom-form input"type="text"  placeholder="ID">
-        </p>
-        <div class="row">
-          <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
-          <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
-        </div>
-       
+        <form [formGroup]="especialidadesForm" (ngSubmit)="guardar()">
+          <p>
+            Información de la especialidad<input type="text" class="custom-form input"type="text" formControlName="nombre" placeholder="Nombre de la especialidad"> 
+          </p>
+          <p>
+            <input type="number" class="custom-form input"type="text" formControlName="idEspecialidad"  placeholder="ID">
+          </p>
+          <div class="row">
+            <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
+            <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
+          </div>
+        </form>
       </div>
-      
+      <div> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+      <div> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+      <div class="col-sm-3 offset-md-4 float-center">
+        <table b="0" span="0" *ngIf="hayRegistros(); else sinarticulos" class="table table-borderless table-striped navbar-light bg-light"  style=" border:0px;">
+          <thead class="thead-dark" style="background:#007ac175; color:white;">
+            <tr>
+              <th>ID</th>
+              <th>Nombre de la especialidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let especialidad of especialidades">
+              <td>{{especialidad.idEspecialidad}}</td>
+              <td>{{especialidad.nombre}}</td>
+              <td>
+                <button class="btn btn-success btn-sm mx-2">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(especialidad)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+                
       </div>
+    
+      <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+     
+    </div>
 
 </body>
 <router-outlet></router-outlet>

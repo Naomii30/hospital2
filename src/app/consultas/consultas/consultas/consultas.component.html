@@ -11,7 +11,6 @@
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/especialidades">Especialidades</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/pacientes">Pacientes</a></li>
             <li class="nav-item"><a class="nav-link" aria-current="page" href="/consultas">Consultas</a></li>
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="/laboratorios">Laboratorios</a></li>
             </ul>
           <a class="ms-auto px-10 align-self-stretch border-start link-dark text-decoration-none d-flex align-items-center fw-bold" href="/auth">
             <span>Log out</span>
@@ -20,41 +19,66 @@
       </div>
     </nav>
     <div class="container" >
-        <div class="col-sm-7 float-left">
-                
-        </div>
-      
-        <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
       
     
       <div class="card col-sm-4 p-2 float-right" class="custom-form">
-        <p>
-          Información de la consulta</p>
-        <p>
-          <input type="number" class="custom-form input"type="text"  placeholder="ID consulta">
-        </p>
-        <p>
-          <input id="date" type="date" class="custom-form input"type="date"  placeholder="Fecha programada">
-        </p>
-        <p>
-          <input type="number" class="custom-form input"  placeholder="ID medico">
-        </p>
-        <p>
-          <input type="" class="custom-form input"  placeholder="ID paciente">
-        </p>
-        <p>
-            <input type="number" class="custom-form input"type="text"  placeholder="ID especialidad">
+        <form [formGroup]="consultasForm" (ngSubmit)="guardar()">
+          <p>
+            Información de la consulta</p>
+          <p>
+            <input id="date" type="date" class="custom-form input"type="date"formControlName="fecha"  placeholder="Fecha programada">
           </p>
-        
-        <p>
-          <input maxlength="13" type="number" class="custom-form input"type="text" placeholder="Numero del consultorio">
-        </p>
-        <div class="row">
-          <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
-          <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
-        </div>
-       
+          <p>
+            <input type="number" class="custom-form input" formControlName="medico" placeholder="ID medico">
+          </p>
+          <p>
+            <input type="" class="custom-form input"  formControlName="paciente" placeholder="ID paciente">
+          </p>
+          <p>
+              <input type="number" class="custom-form input"type="text" formControlName="especialidad" placeholder="ID especialidad">
+            </p>
+          
+          <p>
+            <input maxlength="13" type="number" class="custom-form input"type="text" formControlName="consultorio" placeholder="Numero del consultorio">
+          </p>
+          <div class="row">
+            <div class="offset-md-1 col-sm-3 "> <p><button class="customm-formm button" >Agregar</button></p>&nbsp;</div>
+            <div class="col-sm-3 offset-md-2"> <p><button class="customm-formm button" >Modificar</button></p></div>
+          </div>
+        </form>
       </div>
+      <div> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+      <div> ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+        <div class="col-sm-4 offset-md-3 float-center">
+        <table b="0" span="0" *ngIf="hayRegistros(); else sinarticulos" class="table table-borderless table-striped navbar-light bg-light"  style=" border:0px;">
+          <thead class="thead-dark" style="background:#007ac175; color:white;">
+            <tr>
+              <td>ID.CONSULTA</td>
+              <td>FECHA</td>
+              <td>CONSULTORIO</td>
+              <td>ESPECIALIDAD</td>
+            <td>MEDICO</td>
+            <td>PACIENTE</td>
+            </tr>
+          </thead>
+        <tbody>
+          <tr *ngFor="let consulta of consultas">
+            <td>{{consulta.idConsulta}}</td>
+              <td>{{consulta.fecha}}</td>
+              <td>{{consulta.numConsultorio}}</td>
+              <td>{{consulta.especialidad['nombre']}}</td>
+              <td>{{consulta.medico['nombres']}}</td>
+              <td>{{consulta.paciente['nombres']}}</td>
+              <td>
+                <button class="customm-formm button"> editar</button>
+                <button class="customm-formm button"> eliminar</button>
+        
+            </td>
+          </tr>
+        </tbody>
+        </table>    
+      </div>
+      <ng-template #sinarticulos><p>No hay Registros.</p></ng-template>
       
       </div>
 
