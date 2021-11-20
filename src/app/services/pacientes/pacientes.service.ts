@@ -7,7 +7,7 @@ import { PacientesComponent } from 'src/app/pacientes/pacientes/pacientes/pacien
   providedIn: 'root'
 })
 export class PacientesService {
-  private API_SERVI_PACIENTE = "http://localhost:5432/pacientes";
+  private API_SERVI_PACIENTE = "http://localhost:8080/pacientes";
 
   constructor(
     private httpClient: HttpClient
